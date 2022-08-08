@@ -1,10 +1,15 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import ReminderList from './components/ReminderList';
+import Reminder from './models/reminder';
+
+const reminders: Reminder[] = [
+  {id: 1, title: 'Reminder 1'}
+]
 
 function App() {
   return (
     <div className='container py-5'>
-      <Button variant='primary' size='sm'>Click me!</Button>
+      <ReminderList items={reminders}/>
     </div>
   );
 }
