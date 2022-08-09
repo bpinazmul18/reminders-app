@@ -2,7 +2,7 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL
 
-axios.interceptors.response.use(_null => {}, error => {
+axios.interceptors.response.use(_null => _null, error => {
   const expectedError =
     error.response &&
     error.response.status >= 400 &&
