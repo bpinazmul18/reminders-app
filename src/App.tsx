@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReminderList from './components/ReminderList';
 import Reminder from './models/reminder';
 import { fetchReminders, deleteReminder } from './services/reminders';
+import NewReminder from "./components/NewReminder";
 
 function App() {
   const [reminders, setReminders] = useState<Reminder[]>([])
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <div className='container py-5'>
+        <NewReminder/>
       <ReminderList items={reminders} onRemoveReminder={handleReminder}/>
     </div>
   );
