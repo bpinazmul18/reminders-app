@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReminderList from './components/ReminderList';
 import Reminder from './models/reminder';
-import { fetchReminders } from './services/reminders';
+import { fetchReminders, deleteReminder } from './services/reminders';
 
 function App() {
   const [reminders, setReminders] = useState<Reminder[]>([])
@@ -15,9 +15,26 @@ function App() {
     setReminders(response.data)
   }
 
+  const handleReminder = async (id: number) => {
+    try {
+       const newReminders = reminders.filter((reminder) => reminder.id !== id)
+       setReminders(newReminders)
+
+       await deleteReminder(id)
+   } catch (ex) {
+      //  if (ex.response && ex.response.status === 404)
+      //      console.log('This post already been deleted!')
+
+      //   if (ex.response && ex.response.status === 403)
+      //       console.log(ex.response.data)
+
+       setReminders(reminders)
+   }
+}
+
   return (
     <div className='container py-5'>
-      <ReminderList items={reminders}/>
+      <ReminderList items={reminders} onRemoveReminder={handleReminder}/>
     </div>
   );
 }
